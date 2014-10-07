@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+ul {
+    list-style-type: none;
+}
+
+.authorisation {
+    float: right;
+}
+
+.main_title {
+    margin-bottom: 20px;
+}
+
+.orders {
+    text-align: left;
+}
+.orders th {
+    background: #999;
+    padding: 6px 10px;
+}
+.order {
+
+}
+.order td {
+    padding: 6px 10px;
+    /*background: #dcdcdc;*/
+}
+
+.order:nth-child(2n) {
+    background: #c2c2c2;
+}
+.order:nth-child(odd) {
+    background: #dcdcdc;
+}
