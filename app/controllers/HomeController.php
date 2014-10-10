@@ -23,10 +23,10 @@ class HomeController extends BaseController {
     public function index()
     {
         $orders = Order::getAll();
-        // return $posts; // выведет в виде json
+        //return $orders; // выведет в виде json
 
         // home можно указывать без расширения blade.php // blade - шаблонизатор ralavel
-        return View::make('home')->with('order', $orders);  // with - говорит как эти данные будут наз-ся в виде (шаблонизаторе)
+        return View::make('home')->with('orders', $orders);  // with - говорит как эти данные будут наз-ся в виде (шаблонизаторе)
     }
 
 }

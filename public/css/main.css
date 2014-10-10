@@ -15,6 +15,10 @@ ul {
     margin-bottom: 20px;
 }
 
+.order_table {
+    width: 900px;
+    margin: 0 auto;
+}
 .orders {
     text-align: left;
 }

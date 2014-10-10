@@ -37,7 +37,7 @@
     <td><%=id%></td>
     <td><%=created%></td>
     <td><input type="text" name="buyer" value="<%=buyer%>"/></td>
-    <td><%=desc%></td>
+    <td><input type="text" name="desc" value="<%=desc%>"/></td>
     <td><%=cash%></td>
     <td><%=price%></td>
     <td><%=paid%></td>
@@ -49,6 +49,16 @@
 <div class="orders" id="orders"></div>
 
 <!--<input type="date"/>-->
+
+
+
+
+
+@if (isset($orders) && count($orders) )
+<script>
+    var testData = {{ $orders }};
+</script>
+@endif
 
 <script type="text/javascript" src="js/models/models.order.js" language="javascript"></script>
 <script type="text/javascript" src="js/views/views.order.js" language="javascript"></script>

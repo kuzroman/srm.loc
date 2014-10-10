@@ -41,6 +41,7 @@ App.Views.Order = Backbone.View.extend({
 // список заказов
 App.Views.Orders = Backbone.View.extend({
     tagName: 'table'
+    ,className: 'order_table'
 
     ,template: hp.tmpl('tmpl_order_head')
 

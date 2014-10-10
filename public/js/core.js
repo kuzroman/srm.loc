@@ -1,5 +1,3 @@
-Backbone.history.start(); // запускаем запоминание истории в браузере HTML5
-
 window.App = {
     Models: {}
     ,Views: {}

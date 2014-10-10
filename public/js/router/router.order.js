@@ -1,3 +1,6 @@
+// для того чтобы роуты работали нужно после создания экземпляра роутов запустить
+// Backbone.history.start();
+// я запускаю его в footer.blade.php
 App.Router.Order = Backbone.Router.extend({
 
     routes: {
