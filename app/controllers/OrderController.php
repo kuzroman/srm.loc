@@ -2,12 +2,48 @@
 
 class OrderController extends BaseController {
 
+    public function get($id)
+    {
+        return json_encode(Order::find($id));
+    }
+
+    // запись
+    public function save($id)
+    {
+        $input = Input::get();
+
+        Order::add(array(
+            'created' => $input->created,
+            'buyer' => $input->buyer,
+            'desc' => $input->desc,
+            'cash' => $input->cash,
+            'price' => $input->price,
+            'paid' => $input->paid,
+            'completion' => $input->completion,
+            'finished' => $input->finished
+        ));
+    }
+
     public function update($id)
     {
-        $orders = Order::getAll();
-        return $id; // выведет в виде json
+        $order = Order::find($id);
+        $input = Input::get();
 
-        //return View::make('home')->with('orders', $orders);  // with - говорит как эти данные будут наз-ся в виде (шаблонизаторе)
+        $order->created = $input['created'];
+        $order->buyer = $input['buyer'];
+        $order->desc = $input['desc'];
+        $order->cash = $input['cash'];
+        $order->price = $input['price'];
+        $order->paid = $input['paid'];
+        $order->completion = $input['completion'];
+        $order->finished = $input['finished'];
+
+        $order->save();
+    }
+
+    public function destroy($id)
+    {
+        return Order::find($id)->delete();
     }
 
 }

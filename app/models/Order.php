@@ -28,17 +28,18 @@ class Order extends Eloquent {
 //    }
 //
 //    // добавление новых данных
-//    public static function add($data) {
-//        try {
-//            $post = Post::create([
-//                'title' => $data['title'],
-//                'body' => $data['body'],
-//                'author' => Auth::user()->email,
-//            ]);
-//            return $post;
-//        }
-//        catch(Exeption $ex) {
-//            return $ex;
-//        }
-//    }
+    public static function add($data) {
+        try {
+            $post = Order::create([
+                // заменить на правильные поля!!!!!
+                'title' => $data['title'],
+                'body' => $data['body'],
+                'author' => Auth::user()->email,
+            ]);
+            return $post;
+        }
+        catch(Exeption $ex) {
+            return $ex;
+        }
+    }
 }
