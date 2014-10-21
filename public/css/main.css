@@ -13,10 +13,11 @@ ul {
 
 .main_title {
     margin-bottom: 20px;
+    float: left;
 }
 
 .order_table {
-    width: 900px;
+    /*width: 900px;*/
     margin: 0 auto;
 }
 .orders {

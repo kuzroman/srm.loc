@@ -2,7 +2,6 @@
 App.Views.Order = Backbone.View.extend({
     tagName: 'tr'
     ,className: 'order'
-    //,id: ''
 
     ,template: hp.tmpl('tmpl_order')
     ,templateEdit: hp.tmpl('tmpl_order_edit')
@@ -12,9 +11,7 @@ App.Views.Order = Backbone.View.extend({
         'click .j_change': 'change'
     }
 
-    ,initialize: function () {
-        //console.log('create order', this.model);
-    }
+    ,initialize: function () {}
 
     // наполнение нашего вида кодом
     ,render: function () {
@@ -34,6 +31,8 @@ App.Views.Order = Backbone.View.extend({
             self.model.set($(this).attr('name'), $(this).val() );
         });
         this.render();
+
+        this.model.save({});
     }
 
 });

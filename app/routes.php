@@ -13,9 +13,11 @@
 
 Route::get('/', 'HomeController@index');
 //Route::get('/post/{id}', 'PostController@getPost');
-//Route::get('/logout', function () {Auth::logout(); return Redirect::to('/'); } );
-//Route::get('/reg', 'UserController@showReg'); // на страницу регистрации
+Route::get('/logout', function () {Auth::logout(); return Redirect::to('/'); } );
+Route::get('/reg', 'UserController@showReg'); // на страницу регистрации
 //
 //Route::post('/', 'PostController@addPost');
-//Route::post('/login', 'UserController@login');
-//Route::post('/reg', 'UserController@register'); // обработка формы
+Route::post('/login', 'UserController@login');
+Route::post('/reg', 'UserController@register'); // обработка формы
+
+Route::put('/order/{id}', 'OrderController@update'); //

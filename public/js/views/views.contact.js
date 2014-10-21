@@ -15,11 +15,7 @@ App.Views.App = Backbone.View.extend({
     }
 });
 
-/*
- |---------------------------------------------------
- | Add Contact View
- |---------------------------------------------------
- */
+
 App.Views.AddContact = Backbone.View.extend({
     el: '#addContact',
 
@@ -42,11 +38,8 @@ App.Views.AddContact = Backbone.View.extend({
         //console.log(newContact.toJSON());
     }
 });
-/*
- |---------------------------------------------------
- | Edit Contact View
- |---------------------------------------------------
- */
+
+
 App.Views.EditContact = Backbone.View.extend({
 
     template: hp.tmpl('editContactTpl')

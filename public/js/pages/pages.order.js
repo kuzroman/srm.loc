@@ -26,7 +26,7 @@ new App.Router.Order();
 //];
 
 // в коллекцию обычно передается массив данных с сервера
-var collectionOrders = new App.Collections.Orders(testData);
+var collectionOrders = new App.Collections.Orders(ordersJSON);
 //collectionOrder.add(modelOrder);
 
 var viewOrders = new App.Views.Orders({collection: collectionOrders});
