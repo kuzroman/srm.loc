@@ -32,4 +32,5 @@ var collectionOrders = new App.Collections.Orders(ordersJSON);
 var viewOrders = new App.Views.Orders({collection: collectionOrders});
 $('#orders').html(viewOrders.render().el);
 
+var listEditedOrder = []; // хранилка текущего и предыдущего заказа, обращаемся к ней во время закрытия предыдущей редактируемой области
 

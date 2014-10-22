@@ -2,16 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    {{ HTML::style('css/main.css') }} {{-- используем встроенный helper --}}
+<!--    {{ HTML::style('css/main.css') }} {{-- используем встроенный helper --}}-->
 
-    <script type="text/javascript" src="js/jquery.js" language="javascript"></script>
-    <script type="text/javascript" src="js/underscore.js" language="javascript"></script>
-    <script type="text/javascript" src="js/backbone.js" language="javascript"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/layout.css"/>
+
+    <script type="text/javascript" src="js/jquery/jquery.js" language="javascript"></script>
+    <script type="text/javascript" src="js/jquery/jquery-ui.min.js" language="javascript"></script>
+
+    <script type="text/javascript" src="js/lib/underscore.js" language="javascript"></script>
+    <script type="text/javascript" src="js/lib/backbone.js" language="javascript"></script>
+    <script type="text/javascript" src="js/lib/sugar.js" language="javascript"></script>
+
 
     <script type="text/javascript" src="js/helpers.js" language="javascript"></script>
     <script type="text/javascript" src="js/core.js" language="javascript"></script>
 </head>
 <body>
+
+<!--<input type="date"/>-->
+
 <!--    <h1 class="main_title">SRM</h1>-->
 <!---->
 <!--    <div class="authorisation">-->

@@ -16,17 +16,32 @@ ul {
     float: left;
 }
 
-.order_table {
-    /*width: 900px;*/
+/*-----------------------
+Заказы */
+.orders {
+    width: 980px;
+    text-align: left;
     margin: 0 auto;
 }
-.orders {
-    text-align: left;
+.orders table {
+
 }
 .orders th {
     background: #999;
     padding: 6px 10px;
 }
+
+/*date*/
+.orders th:nth-child(2),
+.orders th:nth-child(8){
+    width: 75px;
+}
+/*textarea*/
+.orders th:nth-child(3),
+.orders th:nth-child(4){
+    width: 130px;
+}
+
 .order {
 
 }
@@ -34,10 +49,24 @@ ul {
     padding: 6px 10px;
     /*background: #dcdcdc;*/
 }
-
 .order:nth-child(2n) {
     background: #c2c2c2;
 }
 .order:nth-child(odd) {
     background: #dcdcdc;
 }
+/*-----------------------
+Заказы - редактирование */
+.order td.edit {
+    padding: 0;
+}
+.order [name="desc"],
+.order [name="buyer"] {
+    width: 150px;
+    height: 50px;
+    resize: none;
+}
+.order [type="date"] {
+    width: 126px;
+}
+/* end Редактирование */
