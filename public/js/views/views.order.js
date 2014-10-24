@@ -31,7 +31,7 @@ App.Views.Order = Backbone.View.extend({
     ,drawInput: function () {
         this.$el.html(this.templateEdit(this.model.toJSON()));
 
-        this.$el.find('[type="date"]').datepicker({dateFormat: "yy-mm-dd"});
+        this.$el.find('[type="ui_date"]').datepicker({dateFormat: "dd.mm.yy", language: "ru"});
 
         this.addEditModel();
         if (1 < listEditedOrder.length && this.isEditedOrderNotEqual() ) {
@@ -74,6 +74,12 @@ App.Views.Order = Backbone.View.extend({
             }
         }
         this.render();
+
+        // перед отправкой на сервер меняем формат даты
+        var format = '{yyyy}-{MM}-{dd}';
+        this.model.set('created', Date.create(this.model.get('created_rus'), 'ru').format(format) );
+        console.log( this.model.get('created_rus') );
+        
         this.model.save();
     }
 

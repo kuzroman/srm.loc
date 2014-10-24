@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
 <!--    {{ HTML::style('css/main.css') }} {{-- используем встроенный helper --}}-->
 
+    <link rel="stylesheet" href="css/jquery-ui.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="css/layout.css"/>
+
 
     <script type="text/javascript" src="js/jquery/jquery.js" language="javascript"></script>
     <script type="text/javascript" src="js/jquery/jquery-ui.min.js" language="javascript"></script>

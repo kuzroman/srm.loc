@@ -38,8 +38,8 @@
 <script type="text/template" id="tmpl_order_edit">
     <td><%=id%></td>
 
-    <td class="edit">
-        <input type="date" name="created" value="<%=created%>"/>
+    <td class="edit cntr">
+        <input type="ui_date" name="created_rus" value="<%=created_rus%>"/>
     </td>
 
     <td class="edit"><textarea name="buyer"><%=buyer%></textarea></td>
@@ -62,8 +62,8 @@
             <input type="radio" name="paid" value="1" <% if (paid == 1) { %> checked <% } %> />да
         </label>
     </td>
-    <td class="edit">
-        <input type="date" name="completion" value="<%=completion%>"/>
+    <td class="edit cntr">
+        <input type="ui_date" name="completion" value="<%=completion%>"/>
     </td>
     <td>
         <label>

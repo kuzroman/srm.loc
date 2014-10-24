@@ -194,10 +194,6 @@
 .mr153 {margin-right:153px !important}
 .mr162 {margin-right:162px !important}
 
-/*end*/
-
-/*font-size*/
-
 .fs10{font-size:10px !important;line-height:1;}
 .fs11{font-size:11px !important;line-height:1;}
 .fs12{font-size:12px !important;line-height:1;}
@@ -222,3 +218,7 @@
 .fs60{font-size:60px !important;line-height:1.4;}
 .fs60{font-size:70px !important;line-height:1.4;}
 .fs72{font-size:72px !important;line-height:1.4;}
+
+.cntr {
+    text-align: center;
+}

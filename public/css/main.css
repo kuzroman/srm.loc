@@ -66,7 +66,9 @@ ul {
     height: 50px;
     resize: none;
 }
-.order [type="date"] {
-    width: 126px;
+.order [type="ui_date"] {
+    width: 72px;
+    text-align: right;
+
 }
 /* end Редактирование */
