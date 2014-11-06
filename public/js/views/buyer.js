@@ -1,42 +1,34 @@
 // вид одного заказа
-App.Views.Order = Backbone.View.extend({
+App.Views.Buyer = Backbone.View.extend({
     tagName: 'tr'
-    ,className: 'order'
 
-    ,template: hp.tmpl('tmpl_order')
-    ,templateEdit: hp.tmpl('tmpl_order_edit')
+    ,template: hp.tmpl('tmpl_buyer')
+    ,templateEdit: hp.tmpl('tmpl_buyer_edit')
 
     ,events: {
         'click .j_edit': 'drawInput',
         'click .j_change': 'change'
     }
 
-    ,initialize: function () {
-        this.form = $('#orders')
-    }
+    ,initialize: function () {}
 
     // наполнение нашего вида кодом
     ,render: function () {
-        this.drawOrder(this.$el, this.model);
+        this.drawBuyer(this.$el, this.model);
         return this;
     }
     
-    ,drawOrder: function ($el, model) {
-        var format = '{dd}.{MM}.{yyyy}';
-        this.model.set('created_rus', Date.create(this.model.get('created')).format(format) );
-        this.model.set('completion_rus', Date.create(this.model.get('completion')).format(format) );
+    ,drawBuyer: function ($el, model) {
         $el.html(this.template(model.toJSON()));
     }
     
     ,drawInput: function () {
         this.$el.html(this.templateEdit(this.model.toJSON()));
 
-        this.$el.find('[type="ui_date"]').datepicker({dateFormat: "dd.mm.yy", language: "ru"});
-
         this.addEditModel();
-        if (1 < listEditedOrder.length && this.isEditedOrderNotEqual() ) {
+        if (1 < listEditedBuyer.length && this.isEditedDataNotEqual() ) {
             var model = this.getSecondLastEditedModel();
-            this.drawOrder( model.el, model.model );
+            this.drawBuyer( model.el, model.model );
         }
 
         return this;
@@ -46,26 +38,29 @@ App.Views.Order = Backbone.View.extend({
     // поэтому чтобы закрыть предыдущий открытый вид, мы должны хранить где то данные о нем
     // для этого и реализованы эти методы
     ,addEditModel: function () {
-        listEditedOrder.push({model: this.model, el: this.el, id:this.model.id});
+        listEditedBuyer.push({model: this.model, el: this.el, id:this.model.id});
         // чтобы не накапливать множество моделей в массиве, своевременно чистим его
-        if (2 < listEditedOrder.length) {
-            listEditedOrder.shift();
+        if (2 < listEditedBuyer.length) {
+            listEditedBuyer.shift();
         }
     }
     ,getSecondLastEditedModel: function () {
-        var num = listEditedOrder.length-2
-            ,el = listEditedOrder[num]['el']
-            ,model = listEditedOrder[num]['model']
-            ,id = listEditedOrder[num]['id']
+        var num = listEditedBuyer.length-2
+            ,el = listEditedBuyer[num]['el']
+            ,model = listEditedBuyer[num]['model']
+            ,id = listEditedBuyer[num]['id']
         ;
         return {el:$(el), model:model};
     }
-    ,isEditedOrderNotEqual: function () {
-        return listEditedOrder[0]['id'] != listEditedOrder[1]['id'];
+    ,isEditedDataNotEqual: function () {
+        return listEditedBuyer[0]['id'] != listEditedBuyer[1]['id'];
     }
 
     ,change: function () {
-        var formElementsList = this.form.serializeArray();
+
+        // пока незнаю где лучше делать поиск $('#'), пока здесь
+        var formElementsList = $('#buyers').serializeArray();
+
         // обновляем данные модели
         for (var num in formElementsList) {
             if (formElementsList.hasOwnProperty(num)) {
@@ -73,28 +68,20 @@ App.Views.Order = Backbone.View.extend({
                 this.model.set(obj['name'], obj['value'] );
             }
         }
-        this.render();
 
-        // перед отправкой на сервер меняем формат даты
-        var format = '{yyyy}-{MM}-{dd}';
-        this.model.set('created', Date.create(this.model.get('created_rus'), 'ru').format(format) );
-        console.log( this.model.get('created_rus') );
-        
+        this.render();
         this.model.save();
     }
 
 });
 
 // список заказов
-App.Views.Orders = Backbone.View.extend({
+App.Views.Buyers = Backbone.View.extend({
     tagName: 'table'
-    //,className: 'order_table'
 
-    ,template: hp.tmpl('tmpl_order_head')
+    ,template: hp.tmpl('tmpl_buyer_head')
 
-    ,initialize: function () {
-        //console.log('create orderS', this);
-    }
+    ,initialize: function () {}
 
     ,render: function () {
         this.collection.each( this.addOne, this); // this - передает контекст
@@ -104,9 +91,9 @@ App.Views.Orders = Backbone.View.extend({
 
     // 1 -пройтись по всему списку и срендерить каждый заказ
     // 2 -вставить в главный тег
-    ,addOne: function (modelOrder) {
-        var viewOrder = new App.Views.Order({model: modelOrder});
-        this.$el.append( viewOrder.render().el );
+    ,addOne: function (modelBuyer) {
+        var viewBuyer = new App.Views.Buyer({model: modelBuyer});
+        this.$el.append( viewBuyer.render().el );
     }
 
     ,addHead: function () {

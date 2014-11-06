@@ -9,6 +9,8 @@ App.Models.Order = Backbone.Model.extend({
         ,paid: 1
         ,completion: false
         ,finished: false
+
+        ,edit: false // if edit = 1 model can edit
     },
 
     initialize : function () {

@@ -12,15 +12,15 @@ class Order extends Eloquent {
     public static function getAll() {
         $orders = Order::all();
 
-        foreach ($orders as $id => $all_order) {
-            $all_order = json_decode($all_order);
-            foreach ($all_order as $param => $value) {
-                if ($param == 'updated_at' || $param == 'created_at') continue;
-                $order[$id][$param] = $value;
-            }
-        }
+//        foreach ($orders as $id => $all_order) {
+//            $all_order = json_decode($all_order);
+//            foreach ($all_order as $param => $value) {
+//                if ($param == 'updated_at' || $param == 'created_at') continue;
+//                $order[$id][$param] = $value;
+//            }
+//        }
         //var_dump( json_encode($order) );
-        return json_encode($order);
+        return json_encode($orders);
     }
 
 //    public static function getOne($id) {

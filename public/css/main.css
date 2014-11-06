@@ -18,57 +18,66 @@ ul {
 
 /*-----------------------
 Заказы */
-.orders {
+.table_1 {
     width: 980px;
     text-align: left;
     margin: 0 auto;
 }
-.orders table {
-
+.table_1 table {
+    /*width: 100%;*/
 }
-.orders th {
+
+.table_1 th {
     background: #999;
     padding: 6px 10px;
 }
+.table_1 .num {
+    min-width: 25px;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
 
 /*date*/
-.orders th:nth-child(2),
-.orders th:nth-child(8){
+.table_1 .date {
     width: 75px;
 }
 /*textarea*/
-.orders th:nth-child(3),
-.orders th:nth-child(4){
+.table_1 th:nth-child(3),
+.table_1 th:nth-child(4){
     width: 130px;
 }
 
-.order {
-
-}
-.order td {
+.table_1 td {
     padding: 6px 10px;
     /*background: #dcdcdc;*/
 }
-.order:nth-child(2n) {
+.table_1 tr:nth-child(2n) {
     background: #c2c2c2;
 }
-.order:nth-child(odd) {
+.table_1 tr:nth-child(odd) {
     background: #dcdcdc;
 }
 /*-----------------------
 Заказы - редактирование */
-.order td.edit {
+.table_1 td.edit {
     padding: 0;
 }
-.order [name="desc"],
-.order [name="buyer"] {
+.table_1 [name="desc"],
+.table_1 [name="buyer"] {
     width: 150px;
     height: 50px;
     resize: none;
 }
-.order [type="ui_date"] {
+.table_1 [type="ui_date"] {
     width: 72px;
     text-align: right;
-
+}
+.table_1 [name="price"] {
+    width: 60px;
+    text-align: right;
+}
+.table_1 .button {
+    width: 75px;
 }
 /* end Редактирование */
