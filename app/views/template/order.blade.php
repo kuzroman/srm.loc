@@ -72,25 +72,6 @@
 
 <form class="table_1" id="orders"></form>
 
-<!--<input type="date"/>-->
-
-
-<!--<div class="orders mt18">-->
-<!--    <span>1</span>-->
-<!--    <span>Начало</span>-->
-<!--    <span>Покупатель</span>-->
-<!--    <span>Описание</span>-->
-<!--    <span>Нал</span>-->
-<!--    <span>Цена</span>-->
-<!--    <span>Оплатил</span>-->
-<!--    <span>Конец</span>-->
-<!--    <span>Завершено</span>-->
-<!--</div>-->
-
-
-
-
-
 
 @if (isset($data['orders']) && count($data['orders']) )
 <script>
@@ -98,6 +79,6 @@
 </script>
 @endif
 
-<script type="text/javascript" src="js/models/order.js" language="javascript"></script>
-<script type="text/javascript" src="js/views/order.js" language="javascript"></script>
-<script type="text/javascript" src="js/collections/order.js" language="javascript"></script>
+<script type="text/javascript" src="js/models/m.order.js" language="javascript"></script>
+<script type="text/javascript" src="js/views/v.order.js" language="javascript"></script>
+<script type="text/javascript" src="js/collections/c.order.js" language="javascript"></script>

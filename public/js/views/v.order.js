@@ -6,12 +6,30 @@ App.Views.Order = Backbone.View.extend({
     ,templateEdit: hp.tmpl('tmpl_order_edit')
 
     ,events: {
-        'click .j_edit': 'drawInput',
-        'click .j_change': 'change'
+        'click .j_edit': 'pushEdit'
+        ,'click .j_change': 'change'
     }
 
     ,initialize: function () {
-        //console.log('init order');
+        var self = this;
+
+    }
+
+    ,pushEdit: function () {
+
+        this.drawInput();
+
+        // смотрим changed в моделях у коллекции и сбрасываем editing
+        this.model.collection.trigger('orders:resetEditing', this);
+
+        // меняем editing в текущей модели
+        this.model.trigger('order:pushEdit', this);
+
+        var model = this.getSecondLastEditedModel();
+        this.drawOrder( model.el, model.model );
+
+
+//        console.log(this);
     }
 
     // наполнение нашего вида кодом
@@ -22,22 +40,21 @@ App.Views.Order = Backbone.View.extend({
     
     ,drawOrder: function ($el, model) {
         var format = '{dd}.{MM}.{yyyy}';
-        this.model.set('created_rus', Date.create(this.model.get('created')).format(format) );
-        this.model.set('completion_rus', Date.create(this.model.get('completion')).format(format) );
+        this.model.set('created_rus', Date.create(this.model.get('created')).format(format));
+        this.model.set('completion_rus', Date.create(this.model.get('completion')).format(format));
         
         $el.html(this.template(model.toJSON()));
     }
     
     ,drawInput: function () {
         this.$el.html(this.templateEdit(this.model.toJSON()));
-
         this.$el.find('[type="ui_date"]').datepicker({dateFormat: "dd.mm.yy", language: "ru"});
 
-        this.addEditModel();
-        if (1 < listEditedOrder.length && this.isEditedDataNotEqual() ) {
-            var model = this.getSecondLastEditedModel();
-            this.drawOrder( model.el, model.model );
-        }
+//        this.addEditModel();
+//        if (1 < listEditedOrder.length && this.isEditedDataNotEqual() ) {
+//            var model = this.getSecondLastEditedModel();
+//            this.drawOrder( model.el, model.model );
+//        }
 
         return this;
     }
@@ -95,7 +112,9 @@ App.Views.Orders = Backbone.View.extend({
 
     ,template: hp.tmpl('tmpl_order_head')
 
-    ,initialize: function () {}
+    ,initialize: function () {
+
+    }
 
     ,render: function () {
         this.collection.each( this.addOne, this); // this - передает контекст

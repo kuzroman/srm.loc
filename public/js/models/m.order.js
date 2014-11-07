@@ -10,13 +10,30 @@ App.Models.Order = Backbone.Model.extend({
         ,completion: false
         ,finished: false
 
-        ,edit: false // if edit = 1 model can edit
+        ,edit: false // если тру появится кнопка редактировать
+        ,editing: false // если тру то она редактируется - нажали на редактировать
     },
 
     initialize : function () {
-        //this.on('error', function (model, error) {console.log(error);} );
+        var self = this;
+
+        //this.on('change', function (a, b) {console.log('change' , a, b);} );
         this.on('invalid', function (model, error) {console.log(error);} );
+
+        this.on('change:editing', function (a) {
+            console.log(a);
+        }, this);
+
+        this.on('order:pushEdit', function (el) {
+            self.set('editing', true);
+//            console.log(el);
+        });
     },
+
+//    edit: function () {
+//        console.log('edit');
+//        this.set({edit: true});
+//    },
 
     validate: function (attrs, options) {
         // проверяет save не set! // для set: order.set({'price':0}, {validate : true});

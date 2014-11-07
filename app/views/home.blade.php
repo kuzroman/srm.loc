@@ -11,8 +11,7 @@
     @include('template.order')
     @include('template.buyer')
 
-<script type="text/javascript" src="js/router/home.js"></script>
-<script type="text/javascript" src="js/pages/home.js"></script>
-
+<script type="text/javascript" src="js/router/r.home.js"></script>
+<script type="text/javascript" src="js/pages/p.home.js"></script>
 
 @stop

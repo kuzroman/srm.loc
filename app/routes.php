@@ -12,8 +12,13 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/page', 'HomeController@index');
+Route::get('/homeEdit', 'HomeController@index');
 
+
+// 404
+Route::get('{allPage}', function($allPage) {
+    return View::make('hello'); // сделать такую же страницу для 404 ошибки
+})->where('allPage', '^.*');
 
 //Route::get('*', 'HomeController@index');
 
