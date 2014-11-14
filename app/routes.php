@@ -15,11 +15,6 @@ Route::get('/', 'HomeController@index');
 Route::get('/homeEdit', 'HomeController@index');
 
 
-// 404
-Route::get('{allPage}', function($allPage) {
-    return View::make('hello'); // сделать такую же страницу для 404 ошибки
-})->where('allPage', '^.*');
-
 //Route::get('*', 'HomeController@index');
 
 
@@ -31,6 +26,10 @@ Route::get('{allPage}', function($allPage) {
 //Route::post('/login', 'UserController@login');
 //Route::post('/reg', 'UserController@register'); // обработка формы
 
-//Route::put('/order/{id}', 'OrderController@update'); //
+Route::put('/order/{id}', 'OrderController@update');
 
 
+// 404
+Route::get('{allPage}', function($allPage) {
+    return View::make('hello'); // сделать такую же страницу для 404 ошибки
+})->where('allPage', '^.*');

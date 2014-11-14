@@ -1,76 +1,150 @@
-<script type="text/template" id="tmpl_order_head">
-    <th class="num">№</th>
-    <th class="date">Начало</th>
-    <th>Покупатель</th>
-    <th>Описание</th>
-    <th>Нал</th>
-    <th>Цена</th>
-    <th>Оплатил</th>
-    <th class="date">Конец</th>
-    <th>Готово</th>
+<script type="text/template" id="tmplOrderHead">
+<div class="head">
+    <div class="num">#</div>
+    <div class="date">Начало</div>
+    <div class="buyer">Покупатель</div>
+    <div class="desc">Описание</div>
+    <div class="cash">Нал</div>
+    <div class="price">Цена</div>
+    <div class="paid">Оплатил</div>
+    <div class="completed">Конец</div>
+    <div class="finished">Готово</div>
+</div>
 </script>
 
-<script type="text/template" id="tmpl_order">
-    <td class="num"><%=id%></td>
-    <td><%=created_rus%></td>
-    <td><%=buyer%></td>
-    <td><%=desc%></td>
-    <td><% if (cash == 1) { %>нал<% } else { %>безнал<% } %></td>
-    <td><%=price%></td>
-    <td><% if (paid) { %>оплатил<% } else { %>не платил<% } %></td>
-    <td><%=completion_rus%></td>
-    <td><% if (finished) { %>готово<% } else { %>в работе<% } %></td>
-    <% if (edit) { %>
-    <td>
-        <button class="j_edit">Редакция</button>
-    </td>
-    <% } %>
+<script type="text/template" id="tmplOrder">
+    <div class="num"><%=id%></div>
+    <div class="date"><%=created_rus%></div>
+    <div class="buyer"><%=buyer%></div>
+    <div class="desc"><%=desc%></div>
+    <div class="cash"><% if (cash == 1) { %>нал<% } else { %>безнал<% } %></div>
+    <div class="price"><%=price%></div>
+    <div class="paid"><% if (paid) { %>оплатил<% } else { %>не оплачено<% } %></div>
+    <div class="completed"><%=completed_rus%></div>
+    <div class="finished"><% if (finished) { %>готово<% } else { %>не готово<% } %></div>
+    <% if (edit) { %><div class="btn"><button class="j_edit">Редакция</button></div><% } %>
 </script>
 
-<script type="text/template" id="tmpl_order_edit">
-    <td><%=id%></td>
 
-    <td class="edit cntr">
-        <input type="ui_date" name="created_rus" value="<%=created_rus%>"/>
-    </td>
+<div class="" id="ordersBox"></div>
 
-    <td class="edit"><textarea name="buyer"><%=buyer%></textarea></td>
-    <td class="edit"><textarea name="desc"><%=desc%></textarea></td>
 
-    <td>
+<script type="text/template" id="tmplOrderEditor">
+
+    <table>
+        <tr>
+            <td class="vtop"># <%=id%></td>
+            <td></td>
+        </tr>
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+            <td class="vtop">Начало</td>
+            <td><input type="ui_date" name="created_rus" value="<%=created_rus%>"/></td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Покупатель</td>
+            <td><textarea name="buyer"><%=buyer%></textarea></td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Описание</td>
+            <td><textarea name="desc"><%=desc%></textarea></td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Нал</td>
+            <td>
+                <label>
+                    <input type="radio" name="cash" value="0" <% if (cash == 0) { %> checked <% } %> />б.нал
+                </label>
+                <label>
+                    <input type="radio" name="cash" value="1" <% if (cash == 1) { %> checked <% } %> />нал
+                </label>
+            </td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Цена</td>
+            <td><input name="price" value="<%=price%>"/></td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Оплатил</td>
+            <td>
+                <label>
+                    <input type="radio" name="paid" value="0" <% if (paid == 0) { %> checked <% } %> />нет
+                </label>
+                <label>
+                    <input type="radio" name="paid" value="1" <% if (paid == 1) { %> checked <% } %> />да
+                </label>
+            </td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Конец</td>
+            <td>
+                <input type="ui_date" name="completed_rus" value="<%=completed_rus%>"/>
+            </td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td class="vtop">Готово</td>
+            <td>
+                <label>
+                    <input type="radio" name="finished" value="0" <% if (finished == 0) { %> checked <% } %> />нет
+                </label>
+                <label>
+                    <input type="radio" name="finished" value="1" <% if (finished == 1) { %> checked <% } %> />да
+                </label>
+            </td>
+        </tr>
+        <tr><td colspan="2" height="10"></td></tr>
+        <tr>
+            <td></td>
+            <td><button class="j_change">Изменить</button></td>
+        </tr>
+    </table>
+
+</script>
+
+<script type="text/template" id="tmplOrderEdit_div">
+
+    <div class="num"><%=id%></div>
+    <div class="date"><input type="ui_date" name="created_rus" value="<%=created_rus%>"/></div>
+    <div class="buyer"><textarea name="buyer"><%=buyer%></textarea></div>
+    <div class="desc"><textarea name="desc"><%=desc%></textarea></div>
+    <div class="cash">
         <label>
             <input type="radio" name="cash" value="0" <% if (cash == 0) { %> checked <% } %> />б.нал
         </label>
         <label>
             <input type="radio" name="cash" value="1" <% if (cash == 1) { %> checked <% } %> />нал
         </label>
-    </td>
-    <td><input name="price" value="<%=price%>"/></td>
-    <td>
+    </div>
+    <div class="price"><input name="price" value="<%=price%>"/></div>
+    <div class="paid">
         <label>
             <input type="radio" name="paid" value="0" <% if (paid == 0) { %> checked <% } %> />нет
         </label>
         <label>
             <input type="radio" name="paid" value="1" <% if (paid == 1) { %> checked <% } %> />да
         </label>
-    </td>
-    <td class="edit cntr">
-        <input type="ui_date" name="completion_rus" value="<%=completion_rus%>"/>
-    </td>
-    <td>
+    </div>
+    <div class="completed"><input type="ui_date" name="completed_rus" value="<%=completed_rus%>"/></div>
+    <div class="finished">
         <label>
             <input type="radio" name="finished" value="0" <% if (finished == 0) { %> checked <% } %> />нет
         </label>
         <label>
             <input type="radio" name="finished" value="1" <% if (finished == 1) { %> checked <% } %> />да
         </label>
-    </td>
-    <td>
-        <button class="j_change">Изменить</button>
-    </td>
+    </div>
+    <div class="btn"><button class="j_change">Изменить</button></div>
+
 </script>
 
-<form class="table_1" id="orders"></form>
+<!--edit cntr в date-->
 
 
 @if (isset($data['orders']) && count($data['orders']) )

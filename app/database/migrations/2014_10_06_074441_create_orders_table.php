@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration {
             $table->boolean('cash'); // безнал
             $table->string('price');
             $table->boolean('paid'); // оплачено
-            $table->date('completion'); // дата завершения
+            $table->date('completed'); // дата завершения
             $table->boolean('finished'); // сдано
             $table->timestamps(); // вроде как обязательное поле для всех миграций!
         });

@@ -219,6 +219,5 @@
 .fs60{font-size:70px !important;line-height:1.4;}
 .fs72{font-size:72px !important;line-height:1.4;}
 
-.cntr {
-    text-align: center;
-}
+.cntr {text-align: center;}
+.vtop {vertical-align: top}

@@ -16,68 +16,157 @@ ul {
     float: left;
 }
 
-/*-----------------------
+
+/*=============================
 Заказы */
-.table_1 {
+
+#ordersBox {
     width: 980px;
     text-align: left;
     margin: 0 auto;
 }
-.table_1 table {
-    /*width: 100%;*/
+
+/*-----------------------
+заголоввок */
+#ordersBox .head > div {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
+}
+#ordersBox .head > div:first-child {
+    margin-left: 0;
+}
+#ordersBox .head > div {
+    background: #777;
+    color: white;
 }
 
-.table_1 th {
-    background: #999;
-    padding: 6px 10px;
+/* проценты заданы относительно ширины строки 980px */
+#ordersBox .num {
+    width: 3%;
+    text-align: right;
 }
-.table_1 .num {
-    min-width: 25px;
-    padding-left: 0;
-    padding-right: 0;
-    text-align: center;
+#ordersBox .date {
+    width: 8%;
+}
+#ordersBox .buyer {
+    width: 15%;
+}
+#ordersBox .desc {
+    width: 15%;
+}
+#ordersBox .cash {
+    width: 5%;
+}
+#ordersBox .price {
+    width: 7%;
+}
+#ordersBox .paid {
+    width: 9%;
+}
+#ordersBox .completed {
+    width: 8%;
+}
+#ordersBox .finished {
+    width: 7%;
+}
+#ordersBox .btn {
+    width: 8%;
 }
 
-/*date*/
-.table_1 .date {
-    width: 75px;
+/*-----------------------
+view - order */
+.vOrder > div {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
 }
-/*textarea*/
-.table_1 th:nth-child(3),
-.table_1 th:nth-child(4){
-    width: 130px;
+.vOrder > div:first-child {
+    margin-left: 0;
 }
 
-.table_1 td {
-    padding: 6px 10px;
-    /*background: #dcdcdc;*/
-}
-.table_1 tr:nth-child(2n) {
+.vOrder:nth-child(2n) > div {
     background: #c2c2c2;
 }
-.table_1 tr:nth-child(odd) {
+.vOrder:nth-child(odd) > div {
     background: #dcdcdc;
 }
+
 /*-----------------------
-Заказы - редактирование */
-.table_1 td.edit {
-    padding: 0;
+view - OrderEdit */
+.vOrderEditor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -158px;
+    z-index: 1000;
+    background: #dadada;
+    padding: 10px;
+    border: 2px solid #999;
 }
-.table_1 [name="desc"],
-.table_1 [name="buyer"] {
-    width: 150px;
+.vOrderEditor input {
+    padding: 2px
+}
+.vOrderEditor [name="desc"],
+.vOrderEditor [name="buyer"] {
+    width: 200px;
     height: 50px;
     resize: none;
 }
-.table_1 [type="ui_date"] {
-    width: 72px;
-    text-align: right;
-}
-.table_1 [name="price"] {
-    width: 60px;
-    text-align: right;
-}
-.table_1 .button {
+.vOrderEditor [type="ui_date"] {
     width: 75px;
+    text-align: right;
 }
+.vOrderEditor [name="price"] {
+    width: 75px;
+    text-align: right;
+}
+
+
+/*-----------------------
+view - OrderEdit - DIV - старое*/
+/*.vOrderEditor {*/
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*left: 100px;*/
+    /*z-index: 1000;*/
+    /*background: #999;*/
+/*}*/
+/*.vOrderEditor > div {*/
+    /*height: 50px;*/
+    /*display: inline-block;*/
+    /*margin-left: 1px;*/
+    /*padding: 4px 5px;*/
+/*}*/
+/*.vOrderEditor > div:first-child {*/
+    /*margin-left: 0;*/
+/*}*/
+
+/*.vOrderEditor:nth-child(2n) > div {*/
+    /*background: #c2c2c2;*/
+/*}*/
+/*.vOrderEditor:nth-child(odd) > div {*/
+    /*background: #dcdcdc;*/
+/*}*/
+
+/*.vOrderEditor [type="ui_date"] {*/
+    /*width: 93%;*/
+    /*text-align: right;*/
+/*}*/
+/*.vOrderEditor [name="desc"],*/
+/*.vOrderEditor [name="buyer"] {*/
+    /*width: 96%;*/
+    /*height: 88%;*/
+    /*resize: none;*/
+/*}*/
+
+/*.vOrderEditor [name="price"] {*/
+    /*width: 60px;*/
+    /*text-align: right;*/
+/*}*/
+/*.vOrderEditor .button {*/
+    /*width: 75px;*/
+/*}*/
 /* end Редактирование */

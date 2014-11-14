@@ -12,8 +12,9 @@ home = {
 
 home.init = function () {
 
-    // подписка на события
+    this.html.init();
     this.event();
+
     // в роутах есть тригеры событий => подписка на них должна быть оформлена до их вызова.
     this.startRouts(); // с этого момента срабатывают события в роутах!
     //console.log('home js');
@@ -24,32 +25,27 @@ home.init = function () {
     // в коллекцию обычно передается массив данных с сервера
     this.collectionOrders = new App.Collections.Orders(this.ordersJSON);
     var viewOrders = new App.Views.Orders({collection: this.collectionOrders});
-    $('#orders').html(viewOrders.render().el);
 
-    // todo - вынести в модель!
-    //var listEditedOrder = []; // хранилка текущего и предыдущего заказа, обращаемся к ней во время закрытия предыдущей редактируемой области
+    this.html.ordersBox.html(viewOrders.render().el);
 
+};
+
+home.html = {
+    init: function () {
+        this.body = $('body');
+        this.ordersBox = $('#ordersBox'); // список заказов
+    }
 };
 
 home.event = function() {
     var self = this;
 
     // фаер события в роутах
-    vent.on('editOrder', function () {
+    vent.on('rHomeEdit', function () {
         for (var num in self.ordersJSON) {
             self.ordersJSON[num]['edit'] = 1;
         }
-    })
-};
-
-home.resetEditing = function () {
-
-    for (var num in this.models) {
-        // находим текущую редактируемую модель
-        if (this.models[num]['changed']['editing']) {
-            this.models[num].set('editing', false);
-        }
-    }
+    });
 
 };
 

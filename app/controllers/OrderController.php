@@ -19,7 +19,7 @@ class OrderController extends BaseController {
             'cash' => $input->cash,
             'price' => $input->price,
             'paid' => $input->paid,
-            'completion' => $input->completion,
+            'completed' => $input->completed,
             'finished' => $input->finished
         ));
     }
@@ -35,7 +35,7 @@ class OrderController extends BaseController {
         $order->cash = $input['cash'];
         $order->price = $input['price'];
         $order->paid = $input['paid'];
-        $order->completion = $input['completion'];
+        $order->completed = $input['completed'];
         $order->finished = $input['finished'];
 
         $order->save();
