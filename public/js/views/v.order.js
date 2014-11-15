@@ -5,15 +5,11 @@ App.Views.Order = Backbone.View.extend({
     ,template: hp.tmpl('tmplOrder')
 
     ,events: {
-        'click .j_edit': 'clickEdit'
+        'click .jEdit': 'clickEdit'
     }
 
     ,initialize: function () {
 
-    }
-
-    ,clickEdit: function () {
-        vent.trigger('vOrder:drawOrderEditor', this);
     }
 
     ,render: function () {
@@ -25,6 +21,10 @@ App.Views.Order = Backbone.View.extend({
         return this;
     }
 
+    ,clickEdit: function () {
+        vent.trigger('vOrder:drawOrderEditor', this);
+    }
+
 });
 
 // редактор заказа (лучше OrderEditor)
@@ -34,7 +34,8 @@ App.Views.OrderEditor = Backbone.View.extend({
     ,template: hp.tmpl('tmplOrderEditor')
 
     ,events: {
-        'click .j_change': 'clickChange'
+        'click .jChange': 'clickChange'
+        ,'click .jClose': 'clickClose'
     }
 
     ,initialize: function () {
@@ -45,6 +46,10 @@ App.Views.OrderEditor = Backbone.View.extend({
         this.$el.html(this.template(this.model.toJSON()));
         this.$el.find('[type="ui_date"]').datepicker({dateFormat: "dd.mm.yy", language: "ru"});
         return this;
+    }
+
+    ,clickClose: function () {
+        this.remove();
     }
 
     ,clickChange: function () {

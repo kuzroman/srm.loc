@@ -7,7 +7,10 @@ $(function () {
 
 home = {
     ordersJSON: ordersJSON // ordersJSON from app\views\template\order.blade.php
-    ,collectionOrders: null
+    ,cOrders: null
+
+    //,buyersJSON: buyersJSON // buyersJSON from app\views\template\buyer.blade.php
+    //,cBuyers: null
 };
 
 home.init = function () {
@@ -19,21 +22,22 @@ home.init = function () {
     this.startRouts(); // с этого момента срабатывают события в роутах!
     //console.log('home js');
 
-//    var openCalc = $(".j_open_calc").overlay();
-//    $(".j_open_calc").overlay().load()
-
     // в коллекцию обычно передается массив данных с сервера
-    this.collectionOrders = new App.Collections.Orders(this.ordersJSON);
-    var viewOrders = new App.Views.Orders({collection: this.collectionOrders});
-
+    this.cOrders = new App.Collections.Orders(this.ordersJSON);
+    var viewOrders = new App.Views.Orders({collection: this.cOrders});
     this.html.ordersBox.html(viewOrders.render().el);
 
+
+//    this.cBuyers = new App.Collections.Buyers(this.buyersJSON);
+//    var viewBuyers = new App.Views.Buyers({collection: this.cBuyers});
+//    this.html.buyersBox.html(viewBuyers.render().el);
 };
 
 home.html = {
     init: function () {
         this.body = $('body');
         this.ordersBox = $('#ordersBox'); // список заказов
+        this.buyersBox = $('#buyersBox'); // список покупателей
     }
 };
 
@@ -42,9 +46,20 @@ home.event = function() {
 
     // фаер события в роутах
     vent.on('rHomeEdit', function () {
+
+        //console.log('rHomeEdit');
         for (var num in self.ordersJSON) {
-            self.ordersJSON[num]['edit'] = 1;
+            if (self.ordersJSON.hasOwnProperty(num)) {
+                self.ordersJSON[num]['edit'] = true;
+            }
         }
+
+//        for (num in self.buyersJSON) {
+//            if (self.buyersJSON.hasOwnProperty(num)) {
+//                self.buyersJSON[num]['edit'] = true;
+//            }
+//        }
+
     });
 
 };
@@ -53,27 +68,3 @@ home.startRouts = function() {
     new App.Router.Home();
     Backbone.history.start(); // после определения роутов обязательно запускаем запоминание истории в браузере HTML5
 };
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-// менять дефолтное состояние edit не нужно, оно для того и дефолтное.
-// варианты
-// - менять ordersJSON после срабатывания роута, добавляя в него свой edit
-// это на этапе загрузки страницы
-
-// - после нажатия на изменить -
-// менять свойство для конкретной модели и перерисовывать ее
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-//var collectionBuyers = new App.Collections.Buyers(buyersJSON);
-//var viewBuyers = new App.Views.Buyers({collection: collectionBuyers});
-//$('#buyers').html(viewBuyers.render().el);
-//var listEditedBuyer = [];
-
-//////////////////////////////////////////////////////////////////////////////////////

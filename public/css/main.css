@@ -18,6 +18,23 @@ ul {
 
 
 /*=============================
+Общие */
+.close {
+    border-radius: 100%;
+    border: 1px solid #777;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 18px;
+    overflow: hidden;
+    background: #777;
+    color: #D2D2D2;
+    cursor: pointer;
+}
+
+
+/*=============================
 Заказы */
 
 #ordersBox {
@@ -82,6 +99,7 @@ view - order */
     display: inline-block;
     margin-left: 1px;
     padding: 4px 5px;
+    overflow: hidden;
 }
 .vOrder > div:first-child {
     margin-left: 0;
@@ -95,7 +113,7 @@ view - order */
 }
 
 /*-----------------------
-view - OrderEdit */
+view - OrderEditor */
 .vOrderEditor {
     position: absolute;
     top: 50%;
@@ -123,7 +141,11 @@ view - OrderEdit */
     width: 75px;
     text-align: right;
 }
-
+.vOrderEditor .close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
 
 /*-----------------------
 view - OrderEdit - DIV - старое*/

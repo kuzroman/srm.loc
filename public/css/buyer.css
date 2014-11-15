@@ -1,0 +1,86 @@
+/*=============================
+Покупатели */
+
+#buyersBox {
+    width: 980px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+/*-----------------------
+заголоввок */
+#buyersBox .head > div {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
+}
+#buyersBox .head > div:first-child {
+    margin-left: 0;
+}
+#buyersBox .head > div {
+    background: #777;
+    color: white;
+}
+
+/* проценты заданы относительно ширины строки 980px */
+#buyersBox .num {
+    width: 3%;
+    text-align: right;
+}
+#buyersBox .name {
+    width: 45%;
+}
+#buyersBox .kind {
+    width: 12%;
+}
+#buyersBox .email {
+    width: 25%;
+}
+
+/*-----------------------
+view - buyer */
+.vBuyer > div {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
+    overflow: hidden;
+}
+.vBuyer > div:first-child {
+    margin-left: 0;
+}
+
+.vBuyer:nth-child(2n) > div {
+    background: #c2c2c2;
+}
+.vBuyer:nth-child(odd) > div {
+    background: #dcdcdc;
+}
+
+/*-----------------------
+view - BuyerEditor */
+.vBuyerEditor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -158px;
+    z-index: 1000;
+    background: #dadada;
+    padding: 10px;
+    border: 2px solid #999;
+}
+.vBuyerEditor input {
+    padding: 2px
+}
+.vBuyerEditor [name="name"],
+.vBuyerEditor [name="email"] {
+    width: 300px;
+    height: 50px;
+    resize: none;
+}
+.vBuyerEditor .close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
