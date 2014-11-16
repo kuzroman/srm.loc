@@ -4,6 +4,9 @@
     <div class="name">Название</div>
     <div class="kind">Вид</div>
     <div class="email">E-mail</div>
+    <div class="">
+        <div class="jClose close">X</div>
+    </div>
 </div>
 </script>
 

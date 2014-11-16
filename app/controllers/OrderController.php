@@ -14,7 +14,7 @@ class OrderController extends BaseController {
 
         Order::add(array(
             'created' => $input->created,
-            'buyer' => $input->buyer,
+            'id_buyer' => $input->id_buyer,
             'desc' => $input->desc,
             'cash' => $input->cash,
             'price' => $input->price,

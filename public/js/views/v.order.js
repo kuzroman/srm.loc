@@ -36,6 +36,7 @@ App.Views.OrderEditor = Backbone.View.extend({
     ,events: {
         'click .jChange': 'clickChange'
         ,'click .jClose': 'clickClose'
+        ,'click .jChoiceBuyer': 'clickChoiceBuyer' // работа с моделью buyer
     }
 
     ,initialize: function () {
@@ -57,6 +58,11 @@ App.Views.OrderEditor = Backbone.View.extend({
         this.model.save();
         this.remove();
         vent.trigger('vOrderEditor:reDrawOrder', this);
+        return false;
+    }
+
+    ,clickChoiceBuyer: function () {
+        vent.trigger('vOrderEditor:drawBuyers', this); // обращаемся к коллекции buyer для отрисовки
         return false;
     }
 

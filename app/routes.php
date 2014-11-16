@@ -28,6 +28,7 @@ Route::get('/homeEdit', 'HomeController@index');
 
 Route::put('/order/{id}', 'OrderController@update');
 
+Route::get('/buyer', 'BuyerController@getAll');
 
 // 404
 Route::get('{allPage}', function($allPage) {

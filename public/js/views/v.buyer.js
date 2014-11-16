@@ -1,4 +1,4 @@
-// вид одного заказа
+// вид одного покупателя
 App.Views.Buyer = Backbone.View.extend({
     tagName: 'div'
     ,className: 'vBuyer'
@@ -32,7 +32,7 @@ App.Views.BuyerEditor = Backbone.View.extend({
     ,className: 'vBuyerEditor'
     ,template: hp.tmpl('tmplBuyerEdit')
 
-    ,event: {
+    ,events: {
         'click .jClose': 'clickClose'
     }
 
@@ -47,14 +47,20 @@ App.Views.BuyerEditor = Backbone.View.extend({
 
 });
 
-// список заказов
+// список Покупателей
 App.Views.Buyers = Backbone.View.extend({
     tagName: 'div'
+    ,className: 'vBuyers'
     ,template: hp.tmpl('tmplBuyerHead')
+
+    ,events: {
+        'click .jClose': 'hideBuyers'
+    }
 
     ,initialize: function () {
         var self = this;
         vent.on('vBuyer:drawBuyerEditor', function(view) { self.drawBuyerEditor(view) });
+        vent.on('pHome:showBuyers', function() { self.showBuyers() });
     }
 
     ,render: function () {
@@ -73,11 +79,20 @@ App.Views.Buyers = Backbone.View.extend({
     }
 
     ,drawBuyerEditor: function (view) {
-        this.currentEditingBuyer = view;
+//        this.currentEditingBuyer = view;
         var vBuyerEditor = new App.Views.BuyerEditor({model: view['model']});
         var top = view.$el.offset().top + view.$el.height();
         vBuyerEditor.$el.css('top',top);
         home.html.body.append(vBuyerEditor.render().el);
+    }
+
+    ,hideBuyers: function () {
+        console.log(1);
+        this.$el.hide();
+    }
+
+    ,showBuyers: function () {
+        this.$el.show();
     }
 
 });

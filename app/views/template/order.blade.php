@@ -15,7 +15,7 @@
 <script type="text/template" id="tmplOrder">
     <div class="num"><%=id%></div>
     <div class="date"><%=created_rus%></div>
-    <div class="buyer" title="<%=buyer%>"><%=buyer%></div>
+    <div class="buyer" title="<%=b_name%>"><%=b_name%></div>
     <div class="desc" title="<%=desc%>"><%=desc%></div>
     <div class="cash"><% if (cash == 1) { %>нал<% } else { %>безнал<% } %></div>
     <div class="price"><%=price%></div>
@@ -45,7 +45,10 @@
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
         <td class="vtop">Покупатель</td>
-        <td><textarea name="buyer"><%=buyer%></textarea></td>
+        <td>
+            <div><%=b_name%> <button class="jChoiceBuyer">Выбрать</button> </div>
+<!--            <textarea name="id_buyer">--><%//=id_buyer%><!--</textarea>-->
+        </td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
     <tr>
@@ -106,42 +109,6 @@
         <td><button class="jChange">Изменить</button></td>
     </tr>
 </table>
-</script>
-
-<script type="text/template" id="tmplOrderEdit_div">
-
-    <div class="num"><%=id%></div>
-    <div class="date"><input type="ui_date" name="created_rus" value="<%=created_rus%>"/></div>
-    <div class="buyer"><textarea name="buyer"><%=buyer%></textarea></div>
-    <div class="desc"><textarea name="desc"><%=desc%></textarea></div>
-    <div class="cash">
-        <label>
-            <input type="radio" name="cash" value="0" <% if (cash == 0) { %> checked <% } %> />б.нал
-        </label>
-        <label>
-            <input type="radio" name="cash" value="1" <% if (cash == 1) { %> checked <% } %> />нал
-        </label>
-    </div>
-    <div class="price"><input name="price" value="<%=price%>"/></div>
-    <div class="paid">
-        <label>
-            <input type="radio" name="paid" value="0" <% if (paid == 0) { %> checked <% } %> />нет
-        </label>
-        <label>
-            <input type="radio" name="paid" value="1" <% if (paid == 1) { %> checked <% } %> />да
-        </label>
-    </div>
-    <div class="completed"><input type="ui_date" name="completed_rus" value="<%=completed_rus%>"/></div>
-    <div class="finished">
-        <label>
-            <input type="radio" name="finished" value="0" <% if (finished == 0) { %> checked <% } %> />нет
-        </label>
-        <label>
-            <input type="radio" name="finished" value="1" <% if (finished == 1) { %> checked <% } %> />да
-        </label>
-    </div>
-    <div class="btn"><button class="j_change">Изменить</button></div>
-
 </script>
 
 <!--edit cntr в date-->

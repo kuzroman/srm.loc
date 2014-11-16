@@ -1,5 +1,5 @@
 $(function () {
-   home.init();
+    home.init();
 });
 
 // отключаем все консоли разом
@@ -7,10 +7,10 @@ $(function () {
 
 home = {
     ordersJSON: ordersJSON // ordersJSON from app\views\template\order.blade.php
-    ,cOrders: null
+    , cOrders: null
 
     //,buyersJSON: buyersJSON // buyersJSON from app\views\template\buyer.blade.php
-    //,cBuyers: null
+    ,cBuyers: null
 };
 
 home.init = function () {
@@ -41,7 +41,7 @@ home.html = {
     }
 };
 
-home.event = function() {
+home.event = function () {
     var self = this;
 
     // фаер события в роутах
@@ -59,12 +59,38 @@ home.event = function() {
 //                self.buyersJSON[num]['edit'] = true;
 //            }
 //        }
+    });
 
+    // показать данные о покупателях
+    vent.on('vOrderEditor:drawBuyers', function (vOrder) {
+        if (self.cBuyers && self.cBuyers.length) {
+            vent.trigger('pHome:showBuyers');
+        }
+        else self.fetchBuyers();
+    });
+
+    // данные покупателей получены
+    vent.on('pHome:fetchBuyersDone', function () {
+        self.drawBuyers();
     });
 
 };
 
-home.startRouts = function() {
+home.fetchBuyers = function () {
+    this.cBuyers = new App.Collections.Buyers();
+    var deferred = this.cBuyers.fetch();
+
+    deferred.done(function () {
+        vent.trigger('pHome:fetchBuyersDone');
+    });
+};
+
+home.drawBuyers = function () {
+    var viewBuyers = new App.Views.Buyers({collection: this.cBuyers});
+    this.html.buyersBox.html(viewBuyers.render().el);
+};
+
+home.startRouts = function () {
     new App.Router.Home();
     Backbone.history.start(); // после определения роутов обязательно запускаем запоминание истории в браузере HTML5
 };

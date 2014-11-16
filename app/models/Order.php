@@ -12,7 +12,7 @@ class Order extends Eloquent {
     public static function getAll() {
 //        $orders = Order::all();
 
-        $orders = DB::select('select o.*, b.name as b_name from orders o INNER JOIN buyers b ON o.buyer = b.id ');
+        $orders = DB::select('select o.*, b.name as b_name from orders o INNER JOIN buyers b ON o.id_buyer = b.id ');
         //print_r($orders);
 
 //        foreach ($buyers as $buyer) {

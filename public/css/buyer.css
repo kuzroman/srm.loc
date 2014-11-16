@@ -5,6 +5,10 @@
     width: 980px;
     text-align: left;
     margin: 0 auto;
+
+    position: relative;
+    z-index: 150;
+    background: #fff;
 }
 
 /*-----------------------
@@ -46,6 +50,10 @@ view - buyer */
     margin-left: 1px;
     padding: 4px 5px;
     overflow: hidden;
+}
+#buyersBox .vBuyer:hover > div {
+    background: #999;
+    color: #fff;
 }
 .vBuyer > div:first-child {
     margin-left: 0;

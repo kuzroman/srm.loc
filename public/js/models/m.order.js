@@ -2,7 +2,8 @@ App.Models.Order = Backbone.Model.extend({
     defaults: {
         //id: '', // backbone, видя айдишник автоматически добавляет его в урл и меняет запрос на put (вместо post) , при вызове метода save. Id должен добавляться SQL автоматически.
         created: '22.07.2014'
-        ,buyer: 'Default'
+        ,id_buyer: 'id buyer'
+        ,b_name: 'buyer name'
         ,desc: 'Test company'
         ,cash: 0
         ,price: 10000

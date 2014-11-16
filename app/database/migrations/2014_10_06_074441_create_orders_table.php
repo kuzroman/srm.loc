@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration {
         Schema::create('orders', function($table) {
             $table->increments('id');
             $table->date('created'); // дата создания
-            $table->string('buyer');
+            $table->string('id_buyer');
             $table->text('desc');
             $table->boolean('cash'); // безнал
             $table->string('price');

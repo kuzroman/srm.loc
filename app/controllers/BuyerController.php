@@ -4,7 +4,23 @@ class BuyerController extends BaseController {
 
     public function get($id)
     {
-        return json_encode(Buyer::find($id));
+        return json_encode( Buyer::find($id) );
+    }
+
+    public function getAll()
+    {
+
+        $fetchBuyers = Buyer::all();
+
+        $fetchedModels = array();
+        foreach ($fetchBuyers as $model) {
+            $fetchedModels[] = $model->attributes;
+        }
+
+
+        return json_encode($fetchBuyers);
+
+//        return json_encode( Buyer::getAll() );
     }
 
     // запись
