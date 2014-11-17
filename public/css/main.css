@@ -19,6 +19,10 @@ ul {
 
 /*=============================
 Общие */
+.center {
+    width: 980px;
+    margin: 0 auto;
+}
 .close {
     border-radius: 100%;
     border: 1px solid #777;
@@ -38,25 +42,30 @@ ul {
 Заказы */
 
 #ordersBox {
-    width: 980px;
     text-align: left;
-    margin: 0 auto;
 }
-
-/*-----------------------
-заголоввок */
-#ordersBox .head > div {
+.vOrders > ul {
+    padding: 0;
+    margin: 0;
+}
+.vOrders li {
     height: 20px;
     display: inline-block;
     margin-left: 1px;
     padding: 4px 5px;
+    overflow: hidden;
+    list-style-type: none;
 }
-#ordersBox .head > div:first-child {
-    margin-left: 0;
-}
-#ordersBox .head > div {
+
+/*-----------------------
+заголоввок */
+
+.vHead > li {
     background: #777;
     color: white;
+}
+.vHead > li:first-child {
+    margin-left: 0;
 }
 
 /* проценты заданы относительно ширины строки 980px */
@@ -90,35 +99,49 @@ ul {
 }
 #ordersBox .btn {
     width: 8%;
+    background: #D8D8D8;
+    color: #DB1C1C;
 }
-
+#ordersBox .btn > span {
+    border-bottom: 1px dotted;
+    cursor: pointer;
+}
+#ordersBox .btn:hover > span {
+    color: #c00;
+}
 /*-----------------------
 view - order */
-.vOrder > div {
-    height: 20px;
-    display: inline-block;
-    margin-left: 1px;
-    padding: 4px 5px;
-    overflow: hidden;
-}
-.vOrder > div:first-child {
+.vOrder > li:first-child {
     margin-left: 0;
 }
-
-.vOrder:nth-child(2n) > div {
+.vOrder:nth-child(2n) > li {
     background: #c2c2c2;
 }
-.vOrder:nth-child(odd) > div {
+.vOrder:nth-child(odd) > li {
     background: #dcdcdc;
+}
+.vOrder:hover > li {
+    background: #B6C4D2;
+    color: #292929;
+}
+.vOrder > li:hover {
+    background: #9A9EB3;
+    color: #fff;
 }
 
 /*-----------------------
 view - OrderEditor */
+#editorBox {
+    position: relative;
+}
+
 .vOrderEditor {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -158px;
+    top: 0;
+    left: 0;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-left: -158px;*/
     z-index: 100;
     background: #dadada;
     padding: 10px;
@@ -147,48 +170,68 @@ view - OrderEditor */
     top: 5px;
 }
 
+
 /*-----------------------
-view - OrderEdit - DIV - старое*/
-/*.vOrderEditor {*/
-    /*position: absolute;*/
-    /*top: 50px;*/
-    /*left: 100px;*/
-    /*z-index: 1000;*/
-    /*background: #999;*/
-/*}*/
-/*.vOrderEditor > div {*/
-    /*height: 50px;*/
-    /*display: inline-block;*/
-    /*margin-left: 1px;*/
-    /*padding: 4px 5px;*/
-/*}*/
-/*.vOrderEditor > div:first-child {*/
-    /*margin-left: 0;*/
-/*}*/
+покупатели vBuyers */
 
-/*.vOrderEditor:nth-child(2n) > div {*/
-    /*background: #c2c2c2;*/
-/*}*/
-/*.vOrderEditor:nth-child(odd) > div {*/
-    /*background: #dcdcdc;*/
-/*}*/
+.vBuyers {
+    width: 667px;
+    position: relative;
+    left: 320px;
+}
 
-/*.vOrderEditor [type="ui_date"] {*/
-    /*width: 93%;*/
-    /*text-align: right;*/
-/*}*/
-/*.vOrderEditor [name="desc"],*/
-/*.vOrderEditor [name="buyer"] {*/
-    /*width: 96%;*/
-    /*height: 88%;*/
-    /*resize: none;*/
-/*}*/
+/*-----------------------
+vBuyers заголоввок */
 
-/*.vOrderEditor [name="price"] {*/
-    /*width: 60px;*/
-    /*text-align: right;*/
-/*}*/
-/*.vOrderEditor .button {*/
-    /*width: 75px;*/
-/*}*/
-/* end Редактирование */
+.vBuyers .head > li {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
+}
+.vBuyers  .head > li:first-child {
+    margin-left: 0;
+}
+.vBuyers  .head > li {
+    background: #777;
+    color: white;
+}
+
+/* проценты заданы относительно ширины строки 980px */
+.vBuyers  .num {
+    width: 3%;
+    text-align: right;
+}
+.vBuyers  .name {
+    width: 35%;
+}
+.vBuyers  .kind {
+    width: 12%;
+}
+.vBuyers  .email {
+    width: 35%;
+}
+
+/*-----------------------
+view - buyer */
+.vBuyer > div {
+    height: 20px;
+    display: inline-block;
+    margin-left: 1px;
+    padding: 4px 5px;
+    overflow: hidden;
+}
+#buyersBox .vBuyer:hover > div {
+    background: #999;
+    color: #fff;
+}
+.vBuyer > div:first-child {
+    margin-left: 0;
+}
+
+.vBuyer:nth-child(2n) > div {
+    background: #c2c2c2;
+}
+.vBuyer:nth-child(odd) > div {
+    background: #dcdcdc;
+}

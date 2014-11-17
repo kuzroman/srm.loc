@@ -1,13 +1,11 @@
 <script type="text/template" id="tmplBuyerHead">
-<div class="head">
-    <div class="num">#</div>
-    <div class="name">Название</div>
-    <div class="kind">Вид</div>
-    <div class="email">E-mail</div>
-    <div class="">
-        <div class="jClose close">X</div>
-    </div>
-</div>
+<ul class="head">
+    <li class="num">#
+    <li class="name">Название
+    <li class="kind">Вид
+    <li class="email">E-mail
+    <li class=""><div class="jClose close">X
+</ul>
 </script>
 
 <script type="text/template" id="tmplBuyer">

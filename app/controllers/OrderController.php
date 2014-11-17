@@ -30,7 +30,7 @@ class OrderController extends BaseController {
         $input = Input::get();
 
         $order->created = $input['created'];
-        $order->buyer = $input['buyer'];
+        $order->id_buyer = $input['id_buyer'];
         $order->desc = $input['desc'];
         $order->cash = $input['cash'];
         $order->price = $input['price'];

@@ -18,24 +18,22 @@ home.init = function () {
     this.html.init();
     this.event();
 
-    // в роутах есть тригеры событий => подписка на них должна быть оформлена до их вызова.
-    this.startRouts(); // с этого момента срабатывают события в роутах!
-    //console.log('home js');
-
     // в коллекцию обычно передается массив данных с сервера
     this.cOrders = new App.Collections.Orders(this.ordersJSON);
     var viewOrders = new App.Views.Orders({collection: this.cOrders});
+
+    // в роутах есть тригеры событий => подписка на них должна быть оформлена до их вызова.
+    this.startRouts(); // с этого момента срабатывают события в роутах!
+
+    // отрисовку делать в конце, когда все экземпляры инициализированы
     this.html.ordersBox.html(viewOrders.render().el);
 
-
-//    this.cBuyers = new App.Collections.Buyers(this.buyersJSON);
-//    var viewBuyers = new App.Views.Buyers({collection: this.cBuyers});
-//    this.html.buyersBox.html(viewBuyers.render().el);
 };
 
 home.html = {
     init: function () {
         this.body = $('body');
+        this.editorBox = $('#editorBox');
         this.ordersBox = $('#ordersBox'); // список заказов
         this.buyersBox = $('#buyersBox'); // список покупателей
     }
@@ -44,28 +42,13 @@ home.html = {
 home.event = function () {
     var self = this;
 
-    // фаер события в роутах
-    vent.on('rHomeEdit', function () {
-
-        //console.log('rHomeEdit');
-        for (var num in self.ordersJSON) {
-            if (self.ordersJSON.hasOwnProperty(num)) {
-                self.ordersJSON[num]['edit'] = true;
-            }
-        }
-
-//        for (num in self.buyersJSON) {
-//            if (self.buyersJSON.hasOwnProperty(num)) {
-//                self.buyersJSON[num]['edit'] = true;
-//            }
-//        }
-    });
-
-    // показать данные о покупателях
-    vent.on('vOrderEditor:drawBuyers', function (vOrder) {
+//    // показать данные о покупателях
+    vent.on('vOrderEditor:drawBuyers', function () {
+        // если уже получали данные то просто из показываем
         if (self.cBuyers && self.cBuyers.length) {
-            vent.trigger('pHome:showBuyers');
+            vent.trigger('showBuyers');
         }
+        // иначе запрашиваем
         else self.fetchBuyers();
     });
 
@@ -87,7 +70,7 @@ home.fetchBuyers = function () {
 
 home.drawBuyers = function () {
     var viewBuyers = new App.Views.Buyers({collection: this.cBuyers});
-    this.html.buyersBox.html(viewBuyers.render().el);
+    this.html.editorBox.append(viewBuyers.render().el);
 };
 
 home.startRouts = function () {

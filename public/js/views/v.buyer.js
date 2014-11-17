@@ -22,9 +22,25 @@ App.Views.Buyer = Backbone.View.extend({
     }
 
     ,clickEdit:function () {
+        console.log('vBuyer - drawBuyerEditor');
         vent.trigger('vBuyer:drawBuyerEditor', this);
     }
 
+});
+
+// вид одного покупателя - расширенный :) - для выбора в заказах
+App.Views.BuyerInOrder = App.Views.Buyer.extend({
+    className: 'vBuyer'
+
+    ,events: {
+        // поиск в текущем виде
+        'click': 'toChangeBuyerInOrder'
+    }
+
+    ,toChangeBuyerInOrder: function () {
+        vent.trigger('toChangeBuyerInOrder', this);
+    }
+    
 });
 
 App.Views.BuyerEditor = Backbone.View.extend({
@@ -50,7 +66,7 @@ App.Views.BuyerEditor = Backbone.View.extend({
 // список Покупателей
 App.Views.Buyers = Backbone.View.extend({
     tagName: 'div'
-    ,className: 'vBuyers'
+    ,className: 'vBuyers '
     ,template: hp.tmpl('tmplBuyerHead')
 
     ,events: {
@@ -60,7 +76,8 @@ App.Views.Buyers = Backbone.View.extend({
     ,initialize: function () {
         var self = this;
         vent.on('vBuyer:drawBuyerEditor', function(view) { self.drawBuyerEditor(view) });
-        vent.on('pHome:showBuyers', function() { self.showBuyers() });
+        vent.on('showBuyers', function() { self.showBuyers() });
+        vent.on('hideBuyers', function() { self.hideBuyers() });
     }
 
     ,render: function () {
@@ -70,7 +87,7 @@ App.Views.Buyers = Backbone.View.extend({
     }
 
     ,addOne: function (modelBuyer) {
-        var viewBuyer = new App.Views.Buyer({model: modelBuyer});
+        var viewBuyer = new App.Views.BuyerInOrder({model: modelBuyer});
         this.$el.append( viewBuyer.render().el );
     }
 
@@ -79,7 +96,6 @@ App.Views.Buyers = Backbone.View.extend({
     }
 
     ,drawBuyerEditor: function (view) {
-//        this.currentEditingBuyer = view;
         var vBuyerEditor = new App.Views.BuyerEditor({model: view['model']});
         var top = view.$el.offset().top + view.$el.height();
         vBuyerEditor.$el.css('top',top);
@@ -87,7 +103,6 @@ App.Views.Buyers = Backbone.View.extend({
     }
 
     ,hideBuyers: function () {
-        console.log(1);
         this.$el.hide();
     }
 

@@ -21,7 +21,7 @@ App.Router.Home = Backbone.Router.extend({
 
 
     homeEdit: function() {
-        vent.trigger('rHomeEdit');
+        vent.trigger('rHome:edit');
     },
 
 //    page: function(id, simbo) {

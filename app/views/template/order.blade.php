@@ -1,32 +1,37 @@
+<!--li не закрываем чтобы небыло пробелов между inline-block элементами-->
 <script type="text/template" id="tmplOrderHead">
-<div class="head">
-    <div class="num">#</div>
-    <div class="date">Начало</div>
-    <div class="buyer">Покупатель</div>
-    <div class="desc">Описание</div>
-    <div class="cash">Нал</div>
-    <div class="price">Цена</div>
-    <div class="paid">Оплатил</div>
-    <div class="completed">Конец</div>
-    <div class="finished">Готово</div>
-</div>
+    <li class="num">#
+    <li class="date">Начало
+    <li class="buyer">Покупатель
+    <li class="desc">Описание
+    <li class="cash">Нал
+    <li class="price">Цена
+    <li class="paid">Оплатил
+    <li class="completed">Конец
+    <li class="finished">Готово
+    <% if (adding) { %>
+        <li class="btn"><span class="jAdd">Добавить</span>
+    <% } %>
 </script>
 
 <script type="text/template" id="tmplOrder">
-    <div class="num"><%=id%></div>
-    <div class="date"><%=created_rus%></div>
-    <div class="buyer" title="<%=b_name%>"><%=b_name%></div>
-    <div class="desc" title="<%=desc%>"><%=desc%></div>
-    <div class="cash"><% if (cash == 1) { %>нал<% } else { %>безнал<% } %></div>
-    <div class="price"><%=price%></div>
-    <div class="paid"><% if (paid) { %>оплатил<% } else { %>не оплачено<% } %></div>
-    <div class="completed"><%=completed_rus%></div>
-    <div class="finished"><% if (finished) { %>готово<% } else { %>не готово<% } %></div>
-    <% if (edit) { %><div class="btn"><button class="jEdit">Редакция</button></div><% } %>
+    <li class="num"><%=id%>
+    <li class="date"><%=created_rus%>
+    <li class="buyer" title="<%=b_name%>"><%=b_name%>
+    <li class="desc" title="<%=desc%>"><%=desc%>
+    <li class="cash"><% if (cash == 1) { %>нал<% } else { %>безнал<% } %>
+    <li class="price"><%=price%>
+    <li class="paid"><% if (paid) { %>оплатил<% } else { %>не оплачено<% } %>
+    <li class="completed"><%=completed_rus%>
+    <li class="finished"><% if (finished) { %>готово<% } else { %>не готово<% } %>
+    <% if (editing) { %>
+        <li class="btn"><span class="edit jEdit">Редакция</span>
+    <% } %>
 </script>
 
 
-<div class="" id="ordersBox"></div>
+<div class="center" id="ordersBox"></div>
+<div class="center" id="editorBox"></div>
 
 
 <script type="text/template" id="tmplOrderEditor">
@@ -46,8 +51,10 @@
     <tr>
         <td class="vtop">Покупатель</td>
         <td>
-            <div><%=b_name%> <button class="jChoiceBuyer">Выбрать</button> </div>
-<!--            <textarea name="id_buyer">--><%//=id_buyer%><!--</textarea>-->
+            <input type="hidden" name="id_buyer" value="<%=id_buyer%>"/>
+            <input type="hidden" name="b_name" value="<%=b_name%>"/>
+            <span class="j_b_name"><%=b_name%></span>
+            <button class="jChoiceBuyer">Выбрать</button>
         </td>
     </tr>
     <tr><td colspan="2" height="10"></td></tr>
