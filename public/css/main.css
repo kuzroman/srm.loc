@@ -16,7 +16,6 @@ ul {
     float: left;
 }
 
-
 /*=============================
 Общие */
 .center {
@@ -37,18 +36,13 @@ ul {
     cursor: pointer;
 }
 
-
 /*=============================
-Заказы */
-
-#ordersBox {
-    text-align: left;
-}
-.vOrders > ul {
+таблицы silver */
+.silver > ul {
     padding: 0;
     margin: 0;
 }
-.vOrders li {
+.silver li {
     height: 20px;
     display: inline-block;
     margin-left: 1px;
@@ -56,16 +50,35 @@ ul {
     overflow: hidden;
     list-style-type: none;
 }
-
-/*-----------------------
-заголоввок */
-
-.vHead > li {
+.silver li:first-child {
+    margin-left: 0;
+}
+.silver ul:nth-child(2n) > li {
+    background: #c2c2c2;
+}
+.silver ul:nth-child(odd) > li {
+    background: #dcdcdc;
+}
+.silver ul:hover > li {
+    background: #B6C4D2;
+    color: #292929;
+}
+.silver ul > li:hover {
+    background: #9A9EB3;
+    color: #fff;
+}
+.silver ul:first-child li {
     background: #777;
     color: white;
 }
-.vHead > li:first-child {
-    margin-left: 0;
+/* end таблицы silver
+=============================*/
+
+/*=============================
+Заказы */
+
+#ordersBox {
+    text-align: left;
 }
 
 /* проценты заданы относительно ширины строки 980px */
@@ -109,92 +122,61 @@ ul {
 #ordersBox .btn:hover > span {
     color: #c00;
 }
-/*-----------------------
-view - order */
-.vOrder > li:first-child {
-    margin-left: 0;
-}
-.vOrder:nth-child(2n) > li {
-    background: #c2c2c2;
-}
-.vOrder:nth-child(odd) > li {
-    background: #dcdcdc;
-}
-.vOrder:hover > li {
-    background: #B6C4D2;
-    color: #292929;
-}
-.vOrder > li:hover {
-    background: #9A9EB3;
-    color: #fff;
-}
 
 /*-----------------------
 view - OrderEditor */
 #editorBox {
-    position: relative;
+    position: absolute;
+    background: #fff;
 }
 
-.vOrderEditor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*margin-left: -158px;*/
-    z-index: 100;
+.orderEditor {
+    width: 295px;
+    float: left;
     background: #dadada;
     padding: 10px;
     border: 2px solid #999;
 }
-.vOrderEditor input {
+.orderEditor input {
     padding: 2px
 }
-.vOrderEditor [name="desc"],
-.vOrderEditor [name="buyer"] {
+.orderEditor [name="desc"],
+.orderEditor [name="buyer"] {
     width: 200px;
     height: 50px;
     resize: none;
 }
-.vOrderEditor [type="ui_date"] {
+.orderEditor [type="ui_date"] {
     width: 75px;
     text-align: right;
 }
-.vOrderEditor [name="price"] {
+.orderEditor [name="price"] {
     width: 75px;
     text-align: right;
 }
-.vOrderEditor .close {
-    position: absolute;
-    right: 5px;
-    top: 5px;
+.orderEditor .close {
+    position: relative;
+    right: -11px;
+    top: -8px;
+    float: right;
 }
-
+.orderEditor td {
+    position: relative;
+}
 
 /*-----------------------
 покупатели vBuyers */
 
 .vBuyers {
     width: 667px;
-    position: relative;
-    left: 320px;
-}
-
-/*-----------------------
-vBuyers заголоввок */
-
-.vBuyers .head > li {
-    height: 20px;
-    display: inline-block;
+    float: right;
     margin-left: 1px;
-    padding: 4px 5px;
 }
-.vBuyers  .head > li:first-child {
-    margin-left: 0;
-}
-.vBuyers  .head > li {
-    background: #777;
-    color: white;
+.vBuyers .close {
+    position: absolute;
+    right: 47px;
+    top: 5px;
+    background: #fff;
 }
 
 /* проценты заданы относительно ширины строки 980px */
@@ -203,35 +185,37 @@ vBuyers заголоввок */
     text-align: right;
 }
 .vBuyers  .name {
-    width: 35%;
+    width: 36%;
 }
 .vBuyers  .kind {
-    width: 12%;
+    width: 13%;
 }
 .vBuyers  .email {
     width: 35%;
 }
 
-/*-----------------------
-view - buyer */
-.vBuyer > div {
-    height: 20px;
-    display: inline-block;
-    margin-left: 1px;
-    padding: 4px 5px;
-    overflow: hidden;
+.validator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #FFF;
+    padding: 4px 10px;
+    border: 1px solid #c0c0c0;
+    color: #555
 }
-#buyersBox .vBuyer:hover > div {
-    background: #999;
-    color: #fff;
+.validator:before{
+    content: '';
+    display: block;
+    width: 17px;
+    height: 16px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    left: -9px;
 }
-.vBuyer > div:first-child {
-    margin-left: 0;
+.error.validator:before {
+    background: #FFE9E9;
 }
-
-.vBuyer:nth-child(2n) > div {
-    background: #c2c2c2;
-}
-.vBuyer:nth-child(odd) > div {
-    background: #dcdcdc;
+.validator.error {
+    background: #FFE9E9;
 }

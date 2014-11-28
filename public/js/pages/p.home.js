@@ -35,28 +35,29 @@ home.html = {
         this.body = $('body');
         this.editorBox = $('#editorBox');
         this.ordersBox = $('#ordersBox'); // список заказов
-        this.buyersBox = $('#buyersBox'); // список покупателей
+        //this.buyersBox = $('#buyersBox'); // список покупателей
     }
 };
 
 home.event = function () {
     var self = this;
 
-//    // показать данные о покупателях
+    // показать данные о покупателях
     vent.on('vOrderEditor:drawBuyers', function () {
-        // если уже получали данные то просто из показываем
-        if (self.cBuyers && self.cBuyers.length) {
+        // если к данным уже обращались то показываем их
+        if (self.cBuyers) {
             vent.trigger('showBuyers');
         }
         // иначе запрашиваем
-        else self.fetchBuyers();
+        else {
+            self.fetchBuyers();
+        }
     });
 
     // данные покупателей получены
     vent.on('pHome:fetchBuyersDone', function () {
         self.drawBuyers();
     });
-
 };
 
 home.fetchBuyers = function () {

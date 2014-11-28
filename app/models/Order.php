@@ -12,7 +12,7 @@ class Order extends Eloquent {
     public static function getAll() {
 //        $orders = Order::all();
 
-        $orders = DB::select('select o.*, b.name as b_name from orders o INNER JOIN buyers b ON o.id_buyer = b.id ');
+        $orders = DB::select('select o.*, b.name as b_name from orders o INNER JOIN buyers b ON o.id_buyer = b.id');
         //print_r($orders);
 
 //        foreach ($buyers as $buyer) {
@@ -50,10 +50,14 @@ class Order extends Eloquent {
     public static function add($data) {
         try {
             $post = Order::create([
-                // заменить на правильные поля!!!!!
-                'title' => $data['title'],
-                'body' => $data['body'],
-                'author' => Auth::user()->email,
+                'created' => $data['created'],
+                'id_buyer' => $data['id_buyer'],
+                'desc' => $data['desc'],
+                'cash' => $data['cash'],
+                'price' => $data['price'],
+                'paid' => $data['paid'],
+                'completed' => $data['completed'],
+                'finished' => $data['finished']
             ]);
             return $post;
         }

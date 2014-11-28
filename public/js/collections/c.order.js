@@ -4,6 +4,19 @@ App.Collections.Orders = Backbone.Collection.extend({
     
     ,initialize: function () {
 
+        // попробовать вынести - это в page!
+        // отправка данных на сервер
+        vent.on('vOderEdit:addModel', function(model) {
+            console.log(this);
+            var def = this.create(model, { wait: true });
+        });
+
+        // данные пришли с сервера говорим что можем их отрисовать
+        this.on('sync', function (a, model) {
+            console.log('sync', a, model);
+            vent.trigger('cOrder:drawView', model);
+        });
+
     }
 
     ,resetEditing: function (el) {

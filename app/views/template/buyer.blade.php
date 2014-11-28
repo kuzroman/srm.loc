@@ -3,17 +3,18 @@
     <li class="num">#
     <li class="name">Название
     <li class="kind">Вид
-    <li class="email">E-mail
-    <li class=""><div class="jClose close">X
+    <li class="email">E-mail<div class="jClose close">X</div>
 </ul>
 </script>
 
 <script type="text/template" id="tmplBuyer">
-    <div class="num"><%=id%></div>
-    <div class="name"><%=name%></div>
-    <div class="kind"><%=kind%></div>
-    <div class="email"><%=email%></div>
-    <% if (edit) { %><div class="btn"><button class="jEdit">Редакция</button></div><% } %>
+    <li class="num"><%=id%>
+    <li class="name"><%=name%>
+    <li class="kind"><%=kind%>
+    <li class="email"><%=email%>
+    <% if (edit) { %>
+        <li class="btn"><span class="jEdit">Редакция</span>
+    <% } %>
 </script>
 
 <script type="text/template" id="tmplBuyerEdit">

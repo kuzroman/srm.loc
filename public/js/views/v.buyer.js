@@ -1,6 +1,6 @@
 // вид одного покупателя
 App.Views.Buyer = Backbone.View.extend({
-    tagName: 'div'
+    tagName: 'ul'
     ,className: 'vBuyer'
 
     ,template: hp.tmpl('tmplBuyer')
@@ -66,7 +66,7 @@ App.Views.BuyerEditor = Backbone.View.extend({
 // список Покупателей
 App.Views.Buyers = Backbone.View.extend({
     tagName: 'div'
-    ,className: 'vBuyers '
+    ,className: 'vBuyers silver'
     ,template: hp.tmpl('tmplBuyerHead')
 
     ,events: {

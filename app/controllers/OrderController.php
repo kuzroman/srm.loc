@@ -7,36 +7,28 @@ class OrderController extends BaseController {
         return json_encode(Order::find($id));
     }
 
-    // запись
-    public function save($id)
+    // добавление
+    public function save()
     {
-        $input = Input::get();
+        $data = Input::all();
+        $addedObj = Order::add($data);
 
-        Order::add(array(
-            'created' => $input->created,
-            'id_buyer' => $input->id_buyer,
-            'desc' => $input->desc,
-            'cash' => $input->cash,
-            'price' => $input->price,
-            'paid' => $input->paid,
-            'completed' => $input->completed,
-            'finished' => $input->finished
-        ));
+        return $addedObj;
     }
 
     public function update($id)
     {
         $order = Order::find($id);
-        $input = Input::get();
+        $data = Input::get();
 
-        $order->created = $input['created'];
-        $order->id_buyer = $input['id_buyer'];
-        $order->desc = $input['desc'];
-        $order->cash = $input['cash'];
-        $order->price = $input['price'];
-        $order->paid = $input['paid'];
-        $order->completed = $input['completed'];
-        $order->finished = $input['finished'];
+        $order->created = $data['created'];
+        $order->id_buyer = $data['id_buyer'];
+        $order->desc = $data['desc'];
+        $order->cash = $data['cash'];
+        $order->price = $data['price'];
+        $order->paid = $data['paid'];
+        $order->completed = $data['completed'];
+        $order->finished = $data['finished'];
 
         $order->save();
     }
