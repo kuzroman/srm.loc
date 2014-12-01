@@ -51,8 +51,8 @@ App.Views.Orders = Backbone.View.extend({
         this.addHead();
         return this;
     }
-    ,addOne: function (modelOrder) {
-        var vOrder = new App.Views.Order({model: modelOrder});
+    ,addOne: function (mOrder) {
+        var vOrder = new App.Views.Order({model: mOrder});
         this.$el.append( vOrder.render().el );
     }
     ,addHead: function () {
@@ -90,16 +90,11 @@ App.Views.Orders = Backbone.View.extend({
         this.param.currentEditingOrder.$el.after( order.render().$el );
         this.param.currentEditingOrder.remove();
     }
-//    ,addModel: function (model) {
-//
-////        var def = this.collection.create(model, { wait: true });
-//
-//        this.drawAddedView(model);
-//    }
     
-    ,drawAddedView: function (model) {
-        var order = new App.Views.Order({model: model});
-        home.html.ordersBox.prepend(order.render().el);
+    ,drawAddedView: function (mOrder) {
+        var order = new App.Views.Order({model: mOrder});
+        // todo необходимо разделение шапки и вида со списком, чтобы можно было делать preppend!
+        home.html.ordersBox.append(order.render().el);
     }
 
 

@@ -8,6 +8,13 @@ App.Views.OrderEditParent = Backbone.View.extend({
         ,'click .jChoiceBuyer': 'clickChoiceBuyer' // работа с моделью buyer
     }
 
+    ,initialize: function () {
+        var self = this;
+        //console.log('initialize');
+        vent.on('closeView', function() { self.clickClose() } );
+//        vent.on('closeView',  this.clickClose );
+    }
+
     ,render: function () {
         this.$el.html(this.template(this.model.toJSON()));
         this.$el.find('[type="ui_date"]').datepicker({dateFormat: "dd.mm.yy", language: "ru"});
@@ -15,6 +22,7 @@ App.Views.OrderEditParent = Backbone.View.extend({
     }
 
     ,clickClose: function () {
+        console.log('clickClose', this);
         this.remove();
         vent.trigger('hideBuyers');
     }
@@ -41,16 +49,17 @@ App.Views.OrderEditParent = Backbone.View.extend({
 App.Views.OrderEditor = App.Views.OrderEditParent.extend({
     template: hp.tmpl('tmplOrderEditor')
 
-    ,events: function(){ // чтобы не затереть родительские события наследуем их вновь.
-        return _.extend({}, App.Views.OrderEditParent.prototype.events,{
-            'click .jChange': 'clickChange'
-            ,'click .jClose': 'clickClose'
-        });
+    ,events: {
+        'click .jChange': 'clickChange'
     }
 
     ,initialize: function () {
+        _.extend(this.events, App.Views.OrderEditParent.prototype.events);  // чтобы не затереть родительские события наследуем их вновь.
         var self = this;
         vent.on('toChangeBuyerInOrder', function(vBuyerEditor) { self.toChangeBuyerInOrder(vBuyerEditor) } );
+
+        //console.log(this);
+        App.Views.OrderEditParent.prototype.initialize.call(this); // вызов родительского init с текущим объектом
     }
     
     ,clickChange: function () {
@@ -63,7 +72,7 @@ App.Views.OrderEditor = App.Views.OrderEditParent.extend({
     }
 
     ,toChangeBuyerInOrder: function (vBuyerEditor) {
-        //console.log('vBuyerEditor', this, vBuyerEditor);
+        console.log('vBuyerEditor', this, vBuyerEditor);
         this.$el.find('[name="id_buyer"]').val( vBuyerEditor.model.get('id') );
         this.$el.find('[name="b_name"]').val( vBuyerEditor.model.get('name') );
         this.$el.find('.j_b_name').text( vBuyerEditor.model.get('name') );
@@ -92,7 +101,8 @@ App.Views.OrderAdder = App.Views.OrderEditParent.extend({
     ,clickAdd: function () {
 
         this.updateModel();
-        vent.trigger('vOderEdit:addModel', this.model);
+        //console.log(this.model);
+        vent.trigger('vOderEdit:addModel', this);
 
 
         //if (!this.model.validationError) this.addModelDom();

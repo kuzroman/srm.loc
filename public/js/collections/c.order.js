@@ -3,18 +3,19 @@ App.Collections.Orders = Backbone.Collection.extend({
     ,url: '/order'
     
     ,initialize: function () {
+        var self = this;
 
         // попробовать вынести - это в page!
         // отправка данных на сервер
-        vent.on('vOderEdit:addModel', function(model) {
-            console.log(this);
-            var def = this.create(model, { wait: true });
+        vent.on('vOderEdit:addModel', function(OrderAdder) {
+            //console.log(OrderAdder.model);
+            self.create(OrderAdder.model, { wait: true });
         });
 
         // данные пришли с сервера говорим что можем их отрисовать
-        this.on('sync', function (a, model) {
-            console.log('sync', a, model);
-            vent.trigger('cOrder:drawView', model);
+        this.on('sync', function (mOrder, dataOrder) {
+            //console.log('sync', mOrder, dataOrder);
+            vent.trigger('cOrder:drawView', mOrder);
         });
 
     }
